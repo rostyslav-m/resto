@@ -1,0 +1,21 @@
+<h1>Editing table</h1>
+ 
+<%= form_for :table, url: table_path(@table), method: :patch do |f| %>
+ 
+  <p>
+    <%= f.label :number %><br>
+    <%= f.number_field :number %>
+  </p>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Back', tables_path %>

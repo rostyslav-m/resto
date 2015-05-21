@@ -1,0 +1,60 @@
+<p>
+  <strong>Number:</strong>
+  <%= @table.number %>
+</p>
+ 
+<p>
+  <strong>Table name:</strong>
+  <%= @table.title %>
+</p>
+
+
+<h4>Add a reservation:</h4>
+<%= form_for([@table, @table.reservations.build]) do |f| %>
+  <p>
+    <%= f.label :person %><br>
+    <%= f.text_field :person %>
+  </p>
+
+  <p>
+    <%= f.label :starttime %><br>
+    <%= f.datetime_select :starttime, :ampm => true, :minute_step => 15 %>
+  </p>
+
+  <p>
+    <%= f.label :endtime %><br>
+    <%= f.datetime_select :endtime, :ampm => true, :minute_step => 15 %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<h3>Reservations</h3>
+<table>
+  <tr>
+    <th>Person</th>
+    <th>Start time</th>
+    <th>End time</th>
+  </tr>
+  <%# if reservation.id %>
+    <% @table.reservations.each do |reservation| %>
+      <tr>
+        <td width="200"><%= reservation.person %></td>
+        <td width="300"><%= reservation.starttime %></td> 
+        <td width="300"><%= reservation.endtime %></td>
+        <td><%#= link_to 'Delete reservation', [reservation.table, reservation],
+                   method:  :delete,
+                   data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  <%# end %>
+</table>
+
+<%= link_to 'Back to tables list', tables_path %>
+<%= link_to 'Edit', edit_table_path(@table) %>
+<%= link_to 'Delete', table_path(@table),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>

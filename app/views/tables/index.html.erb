@@ -1,0 +1,18 @@
+<h1>Listing tables</h1>
+ 
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Table name</th>
+  </tr>
+ 
+  <% @tables.each do |table| %>
+    <tr>
+      <td><%= table.number %></td>
+      <td><%= link_to table.title, table_path(table) %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+<%= link_to 'Add new table', new_table_path %>
