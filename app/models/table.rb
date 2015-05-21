@@ -1,3 +1,3 @@
 class Table < ActiveRecord::Base
-  has_many :reservations
+  has_many :reservations, :dependent => :destroy
 end

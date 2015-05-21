@@ -1,27 +1,20 @@
 class ReservationsController < ApplicationController
 
-  before_filter :find_reservation, only: [:show, :edit, :update, :destroy]
-
   def create
     @table = Table.find(params[:table_id])
     @reservation = @table.reservations.create(reservation_params)
-    redirect_to table_path(@table)
+    respond_to do |format|
+      if @reservation.save
+        format.html { redirect_to table_path(@table), notice: 'Reservation was successfully created.' }
+      else
+        format.html  { redirect_to table_path(@table), notice: 'Reservation was NOT created. Please check the time of reservation!' }
+      end
+    end
   end
 
-#  def destroy
-#    @reservation = @table.reservation.find(params[:id])
-#    @reservation.destroy
-#    redirect_to table_path(@product)
-#  end
-
   private
-
     def reservation_params
       params.require(:reservation).permit(:person, :starttime, :endtime)
     end
-
-#    def find_reservation   
-#      @reservation = Reservation.find(params[:reservation_id])
-#    end
 
 end

@@ -1,34 +1,17 @@
-<p>
-  <strong>Number:</strong>
-  <%= @table.number %>
-</p>
- 
-<p>
-  <strong>Table name:</strong>
-  <%= @table.title %>
-</p>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
 
+<h2>
+  Table N:<%= @table.number %> - <%= @table.title %>
+</h2>
 
-<h4>Add a reservation:</h4>
+<h4>Add new reservation for the table:</h4>
 <%= form_for([@table, @table.reservations.build]) do |f| %>
-  <p>
-    <%= f.label :person %><br>
-    <%= f.text_field :person %>
-  </p>
-
-  <p>
-    <%= f.label :starttime %><br>
-    <%= f.datetime_select :starttime, :ampm => true, :minute_step => 15 %>
-  </p>
-
-  <p>
-    <%= f.label :endtime %><br>
-    <%= f.datetime_select :endtime, :ampm => true, :minute_step => 15 %>
-  </p>
-
-  <p>
+    <strong>Person:</strong><%= f.text_field :person %><br>
+    <strong>Start time:</strong><%= f.datetime_select :starttime, :minute_step => 15 %><br>
+    <strong>Start time:</strong><%= f.datetime_select :endtime, :minute_step => 15 %><br>
     <%= f.submit %>
-  </p>
 <% end %>
 
 <h3>Reservations</h3>
@@ -38,22 +21,16 @@
     <th>Start time</th>
     <th>End time</th>
   </tr>
-  <%# if reservation.id %>
-    <% @table.reservations.each do |reservation| %>
-      <tr>
-        <td width="200"><%= reservation.person %></td>
-        <td width="300"><%= reservation.starttime %></td> 
-        <td width="300"><%= reservation.endtime %></td>
-        <td><%#= link_to 'Delete reservation', [reservation.table, reservation],
-                   method:  :delete,
-                   data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  <%# end %>
+  <% @table.reservations.each do |reservation| %>
+    <tr>
+      <td width="200"><%= reservation.person %></td>
+      <td width="300"><%= reservation.starttime %></td> 
+      <td width="300"><%= reservation.endtime %></td>
+    </tr>
+  <% end %>
 </table>
 
-<%= link_to 'Back to tables list', tables_path %>
+<%= link_to 'Back to tables list', root_path %>
 <%= link_to 'Edit', edit_table_path(@table) %>
 <%= link_to 'Delete', table_path(@table),
                method: :delete,
