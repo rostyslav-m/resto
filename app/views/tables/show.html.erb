@@ -9,8 +9,8 @@
 <h4>Add new reservation for the table:</h4>
 <%= form_for([@table, @table.reservations.build]) do |f| %>
     <strong>Person:</strong><%= f.text_field :person %><br>
-    <strong>Start time:</strong><%= f.datetime_select :starttime, :default => DateTime.now, :minute_step => 15 %><br>
-    <strong>Start time:</strong><%= f.datetime_select :endtime, :default => DateTime.now, :minute_step => 15 %><br>
+    <strong>Start time:</strong><%= f.datetime_select :starttime, :default => Time.now, :minute_step => 15 %><br>
+    <strong>End time: </strong><%= f.datetime_select :endtime, :default => Time.now + 7200, :minute_step => 15 %><br>
     <%= f.submit %>
 <% end %>
 
@@ -24,8 +24,8 @@
   <% @table.reservations.each do |reservation| %>
     <tr>
       <td width="200"><%= reservation.person %></td>
-      <td width="300"><%= reservation.starttime %></td> 
-      <td width="300"><%= reservation.endtime %></td>
+      <td width="180"><%= reservation.try(:starttime).try(:strftime, '%B %e, %Y  on  %H:%M') %></td>
+      <td width="180"><%= reservation.try(:endtime).try(:strftime, '%B %e, %Y  on  %H:%M') %></td>
     </tr>
   <% end %>
 </table>
