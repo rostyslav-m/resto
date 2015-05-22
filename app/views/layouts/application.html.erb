@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+          <h3>Tables</h3>
+          <% Table.all.each do |table| %>
+          <li><%= table.number %>. <%= link_to table.title, table_path(table) %></li>
+          <% end %>
+          <%=link_to 'Add new Table', new_table_path %>
+      </div>
+      <div class="col-md-8">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
