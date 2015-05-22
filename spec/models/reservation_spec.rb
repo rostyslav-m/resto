@@ -15,4 +15,12 @@ describe Reservation do
     reservation4.valid? == false
   end
 
+  it "Reservation for different tables on same time should be valid" do
+    table1 = Table.new
+    table2 = Table.new
+    reservation3 = Reservation.new( { starttime: "2015-05-21 13:30:00", endtime: "2015-05-21 15:00:00", table_id: 1 } )
+    reservation4 = Reservation.new( { starttime: "2015-05-21 13:00:00", endtime: "2015-05-21 16:00:00", table_id: 2 } )
+    reservation4.valid? == true
+  end
+
 end
