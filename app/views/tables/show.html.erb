@@ -10,7 +10,7 @@
 <%= form_for([@table, @table.reservations.build]) do |f| %>
     <strong>Person:</strong><%= f.text_field :person %><br>
     <strong>Start time:</strong><%= f.datetime_select :starttime, :default => DateTime.now, :minute_step => 15 %><br>
-    <strong>Start time:</strong><%= f.datetime_select :endtime, :default => (Time.now + 2), :minute_step => 15 %><br>
+    <strong>Start time:</strong><%= f.datetime_select :endtime, :default => DateTime.now, :minute_step => 15 %><br>
     <%= f.submit %>
 <% end %>
 
