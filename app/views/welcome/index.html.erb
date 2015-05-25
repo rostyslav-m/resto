@@ -1,0 +1,19 @@
+<h3>Reservations</h3>
+<table>
+  <tr>
+    <th></th>
+    <th>Table</th>
+    <th>Person</th>
+    <th>Start time</th>
+    <th>End time</th>
+  </tr>
+  <% @reservations.each do |reservation| %>
+    <tr> 
+      <td width="20"><%= reservation.table.number %></td>
+      <td width="120"><%= reservation.table.title %></td>
+      <td width="200"><%= reservation.person %></td>
+      <td width="180"><%= reservation.try(:starttime).try(:strftime, '%B %e, %Y  on  %H:%M') %></td>
+      <td width="180"><%= reservation.try(:endtime).try(:strftime, '%B %e, %Y  on  %H:%M') %></td>
+    </tr>
+  <% end %>
+</table>
