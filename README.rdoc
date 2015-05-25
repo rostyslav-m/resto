@@ -6,6 +6,8 @@ Reservations have a start time, an end time and a table number.
 
 There is a validation that check new reservations for overbooking of the same table in the restaurant. The table cannot have 2 reservations for the same period of time.
 
-for any questions please contact me: ros55[at]ukr[dot]net
+Preview on Heroku https://restoplus.herokuapp.com/
+
+For any questions please contact me: ros55[at]ukr[dot]net
 
 PS. Ruby on Rails junior will be happy to join team of mentors to get more experience :)
